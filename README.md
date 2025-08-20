@@ -288,3 +288,6 @@ A parte mais legal é que ele gerencia automaticamente os cookies de sessão, CS
 Outra coisa que gosto muito no Better-auth é que ele tem um sistema de plugins bem robusto. Você pode adicionar funcionalidades como verificação de email, two-factor authentication, rate limiting, tudo de forma modular. Para esse projeto eu mantive simples, mas a base está lá para crescer quando necessário.
 
 Para escalar esse projeto, precisariamos adicionar um tratamento mais robusto nos endpoints para evitar qualquer tipo de vunerabilidade e para manter a garantia de tipos do tipescript. No frontend, algo semelhante. Precisamos validar os erros de formas robustas e elegante, de forma que nao lance erro nao mapeado. Tambem daria pra adicionar mais testes unitarios e de integracao, projeto esta configurado com o [Vitest](https://vitest.dev/guide/) para testar com mais velocidade, tanto de performance quanto de DX. 
+
+### Tempo de desafio
+![Tempo desenvolvimento](./assets/tempo-desafio.png)
