@@ -31,6 +31,8 @@ Depois basta apenas executar o comando:
 npm run docker:build && npm run docker:up
 ```
 
+e entao acessar [http://localhost:3000](http://localhost:3000)
+
 ## Sobre o projeto
 
 Bom, o projeto em si foi desenvolvido usando monorepo [Turborepo](https://turborepo.com/). Você deve estar se perguntando o porquê eu decidi usar monorepo para o desenvolvimento? 
