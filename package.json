@@ -1,0 +1,25 @@
+{
+  "name": "amora-simulator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "turbo run build",
+    "start": "turbo run start",
+    "dev": "turbo run dev --parallel",
+    "test": "vitest",
+    "docker:build": "docker compose build",
+    "docker:up": "docker compose up",
+    "docker:down": "docker compose down",
+    "dev:docker:up": "docker compose -f docker-compose.dev.yaml up --build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.14.0",
+  "devDependencies": {
+    "@biomejs/biome": "^2.2.0",
+    "turbo": "^2.5.6",
+    "vitest": "^3.2.4"
+  }
+}

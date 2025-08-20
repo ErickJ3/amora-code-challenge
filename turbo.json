@@ -1,0 +1,53 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "globalEnv": [
+    "DATABASE_HOST",
+    "DATABASE_NAME", 
+    "DATABASE_PASSWORD",
+    "DATABASE_PORT",
+    "DATABASE_URL",
+    "DATABASE_USERNAME",
+    "API_URL",
+    "WEB_URL",
+    "API_PORT",
+    "WEB_PORT",
+    "DB_PORT",
+    "NODE_ENV"
+  ],
+  "tasks": {
+    "build": {
+      "outputs": ["dist/**", ".next/**"],
+      "dependsOn": ["^build"],
+      "env": [
+        "DATABASE_URL",
+        "NEXT_PUBLIC_API_URL"
+      ]
+    },
+    "lint": {
+      "outputs": []
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true,
+      "env": [
+        "DATABASE_URL",
+        "NEXT_PUBLIC_API_URL",
+        "DATABASE_HOST",
+        "DATABASE_NAME",
+        "DATABASE_PASSWORD",
+        "DATABASE_PORT",
+        "DATABASE_USERNAME"
+      ]
+    },
+    "test": {
+      "outputs": [],
+      "dependsOn": ["^build"]
+    },
+    "start": {
+      "env": [
+        "DATABASE_URL",
+        "NEXT_PUBLIC_API_URL"
+      ]
+    }
+  }
+}
