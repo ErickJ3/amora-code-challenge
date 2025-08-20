@@ -257,3 +257,47 @@ No geral o projeto esta relativamente bem implementado, eu gostaria de ter tido 
 
 ## Criar nova simulação
 ![Criar nova simulação](./assets/criar-simulacao.png)
+
+
+Claro! Aqui está a seção atualizada com informações sobre o Better-auth:
+
+## Dicas sobre o projeto
+
+Você deve ter percebido que eu usei uma pasta chamada `_components` dentro de cada rota de página. Por que eu fiz isso? Bom, hoje em dia tudo parece ser componente, e nada parece ser componente. Quando nós colocamos os componentes de contextos específicos ficam em apenas uma pasta `components` isso dificulta a navegação entre contextos. Na minha visão os componentes dentro de `components` na raiz do projeto, devem ser verdadeiramente componentes que podem ser usados em toda a aplicação, já os componentes que estiverem em `_components` devem focar apenas naquele contexto para não misturar os contextos e deixar com fácil manutenção. Não é uma regra, apenas uma recomendação, e gosto muito dela! A escolha do prefixo ```_``` e por conta do sistema de rotas do [ Next.js](https://nextjs.org/docs/app/getting-started/project-structure#private-folders), se eu por apenas ```components``` ele vai entender que aquela pasta, seria uma pagina. Entao para evitar conflitos com o next.js e confusao entre os desenvolvedores, adicionei o ```_``` como prefixo. 
+
+Eu estou usando o [TanStack Query](https://tanstack.com/query/latest) para gerenciar o ciclo de vida de uma requisição. Sempre opto por separar essa parte do [TanStack Query](https://tanstack.com/query/latest) em um hook, fica mais simples de dar manutenção, mais simples de testar também. O [TanStack Query](https://tanstack.com/query/latest) é ótimo pra invalidar requests que estão em cache e refazer elas, fazendo com que as atualizações de estados da aplicação fiquem programáticas, digamos assim. Com ele por exemplo eu posso usar o 
+
+```js 
+queryClient.invalidateQueries({ queryKey: 'todos' })
+```
+
+isso faz com que a [query](https://tanstack.com/query/latest/docs/framework/react/guides/queries) que está buscando os todos seja invalidada (remove o cache), fazendo com que o [TanStack Query](https://tanstack.com/query/latest) refaça a request e busque os dados atualizados do backend. Então o que vai retornar dessa query
+
+```js
+useQuery({
+    queryKey: "todos", // essa key é usada no 'invalidateQueries'
+    queryFn: todos.getAll,
+})
+```
+seria os novos to-dos do backend.  
+
+Alternativamente poderíamos usar o [Optimistic Updates](https://tanstack.com/query/latest/docs/framework/react/guides/optimistic-updates). O que seria [Optimistic Updates](https://tanstack.com/query/latest/docs/framework/react/guides/optimistic-updates)? Basicamente uma forma de atualizar o cache de dados diretamente no navegador, sem precisar refazer uma request, ele usa o princípio de que
+
+> Vamos mandar a requisição para o backend, caso for sucesso, não preciso invalidar o cache e fazer uma nova request, apenas atualizo o cache local. 
+
+Essa forma de atualização de dados é extremamente útil, economiza dados do usuário e dá um feedback imediato para o usuário, criando assim uma ótima UX/DX tanto para o usuário, quanto para o desenvolvedor.
+
+Para autenticação eu escolhi o [Better-auth](https://www.better-auth.com/) ao invés de outras soluções como NextAuth ou Auth0. Por quê? Bom, o Better-auth é type-safe por padrão, tem uma API bem simples e funciona tanto no client quanto no server de forma consistente. Ele também é bem flexível - você pode usar com qualquer banco de dados e framework.
+
+No projeto eu criei um hook customizado `useAuth` que encapsula toda a lógica de autenticação. Isso me permite ter um controle maior sobre os estados de loading, error handling e também facilita muito na hora de testar. O Better-auth oferece métodos simples como `signIn.email()`, `signUp.email()` e `signOut()` que são bem diretos de usar:
+
+```js
+const { data, error } = await authClient.signIn.email({
+  email,
+  password,
+})
+```
+
+A parte mais legal é que ele gerencia automaticamente os cookies de sessão, CSRF protection e outras questões de segurança. No backend eu só preciso configurar as rotas e ele cuida do resto. Também é bem fácil de estender - se eu quisesse adicionar login com Google ou GitHub, seria só algumas linhas de código.
+
+Outra coisa que gosto muito no Better-auth é que ele tem um sistema de plugins bem robusto. Você pode adicionar funcionalidades como verificação de email, two-factor authentication, rate limiting, tudo de forma modular. Para esse projeto eu mantive simples, mas a base está lá para crescer quando necessário.
