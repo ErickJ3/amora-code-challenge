@@ -250,7 +250,7 @@ No geral o projeto esta relativamente bem implementado, eu gostaria de ter tido 
 ![Login](./assets/login-screen.png)
 
 ## Cadastro
-![Cadastro](./assets/criar-simulacao.png)
+![Cadastro](./assets/cadastro-screen.png)
 
 ## Simulações
 ![Simulações](./assets/simulacoes.png)
