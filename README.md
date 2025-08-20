@@ -11,32 +11,16 @@
 - [Uma visão mais profunda sobre o projeto](#uma-visão-mais-profunda-sobre-o-projeto)
 
 ## Requisitos
-
-- Node.js v20.0.0 e npm 10.9.2 ou maior
-- Bun 1.2.19 ou maior
 - Docker 28.3.3 ou maior
-- pnpm 10.14.0 ou maior
 
 ## Instruções para executar o projeto
 
-São apenas 3 passos simples para a execução do projeto:
+São apenas 2 passos simples para a execução do projeto:
 
 ### Primeiro
 Execute este comando na raiz do projeto:
 ```bash
 cp .env.example .env
-```
-
-### Segundo
-Rode o comando de instalação de pacotes (esse comando vai instalar todas as dependências necessárias):
-
-```bash
-pnpm install
-```
-
-> Caso não tenha o gerenciador de pacotes pnpm instalado, instale-o usando o npm:
-```bash
-npm i -g pnpm 
 ```
 
 ### Execução
