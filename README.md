@@ -11,6 +11,7 @@
 - [Uma visão mais profunda sobre o projeto](#uma-visão-mais-profunda-sobre-o-projeto)
 
 ## Requisitos
+- Node.js v20.0.0 e npm 10.9.2 ou maior
 - Docker 28.3.3 ou maior
 
 ## Instruções para executar o projeto
@@ -27,7 +28,7 @@ cp .env.example .env
 Depois basta apenas executar o comando:
 
 ```bash
-pnpm docker:build && pnpm docker:up
+npm run docker:build && npm run docker:up
 ```
 
 ## Sobre o projeto
